@@ -6,7 +6,7 @@
 }
 
 .menu {
-  width: 375px;
+  width: 92%;
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -36,14 +36,14 @@ nav ul {
 }
 
 main {
-  width: 375px;
+  width: 92%;
   padding: 0 4%;
   margin: 0 auto;
 }
 
 .introduction {
   display: grid;
-  grid-template-columns: 375px;
+  grid-template-columns: 100%;
 }
 
 .introduction h2 {
@@ -66,9 +66,9 @@ main {
 }
 
 .profile {
-  width: 375px;
+  width: 100%;
   display: grid;
-  grid-template-columns: 375px;
+  grid-template-columns: 100%;
 }
 
 .profile h2 {
@@ -84,13 +84,13 @@ main {
 }
 
 .profile .profile_box .profile_text {
-  width: 375px;
+  width: 100%;
   text-align: center;
 }
 
 .profile .profile_box .profile_img {
   display: block;
-  width: 375px;
+  width: 100%;
 }
 
 .copyright {
