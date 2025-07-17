@@ -30,7 +30,7 @@ nav ul {
 }
 
 .main_img {
-  background-image: url(images/main.png);
+  background-image: url(../images/main.png);
   background-position: center;
   height: 600px;
 }
