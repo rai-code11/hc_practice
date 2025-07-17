@@ -1,0 +1,167 @@
+/*iPhoneサイズの設定*/
+
+.container {
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+.menu {
+  width: 375px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4%;
+  align-items: center;
+  margin: 0 auto 5px auto;
+}
+
+.resume {
+  background-color: #393f4c;
+  font-size: 25px;
+  color: #fff;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.main_img {
+  background-image: url(images/main.png);
+  background-position: center;
+  height: 600px;
+}
+
+main {
+  width: 375px;
+  padding: 0 4%;
+  margin: 0 auto;
+}
+
+.introduction {
+  display: grid;
+  grid-template-columns: 375px;
+}
+
+.introduction h2 {
+  font-size: 40px;
+  color: #000;
+  border-bottom: 1px solid #000;
+  margin: 110px auto 50px auto;
+  padding-bottom: 3px;
+}
+
+.introduction p {
+  margin: 20px auto;
+  font-weight: 800;
+}
+
+.introduction_img {
+  display: block;
+  margin: 20px auto;
+  border-radius: 50%;
+}
+
+.profile {
+  width: 375px;
+  display: grid;
+  grid-template-columns: 375px;
+}
+
+.profile h2 {
+  margin: 110px auto 50px auto;
+  font-size: 40px;
+  color: #000;
+  border-bottom: 1px solid #000;
+  padding-bottom: 3px;
+}
+
+.title_box {
+  text-align: center;
+}
+
+.profile .profile_box .profile_text {
+  width: 375px;
+  text-align: center;
+}
+
+.profile .profile_box .profile_img {
+  display: block;
+  width: 375px;
+}
+
+.copyright {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  color: #a9a9a9;
+  border-bottom: 5px solid #000;
+  padding-bottom: px;
+  margin-top: 100px;
+}
+
+/*PCサイズの設定*/
+@media screen and (min-width: 600px) {
+  .container {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+
+  .menu,
+  main {
+    width: 960px;
+  }
+
+  .main_img {
+    width: 100%;
+  }
+
+  .introduction {
+    grid-template-columns: 760px 200px;
+    grid-template-rows: 210px 50px 150px;
+  }
+
+  .introduction h2 {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+
+  .introduction p {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 0;
+  }
+
+  .introduction_text {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .introduction_img {
+    grid-column: 2;
+    grid-row: 2 / 3;
+  }
+
+  .profile {
+    width: 960px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 210px 150px 200px;
+
+    gap: 0 30px;
+  }
+
+  .profile h2 {
+    grid-column: 1 / 4;
+  }
+
+  .profile .profile_box .profile_text {
+    width: 100%;
+  }
+
+  .profile .profile_box .profile_img {
+    width: 100%;
+  }
+}
