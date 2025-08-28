@@ -5,23 +5,42 @@ import sys
 import datetime as dt
 
 # 入力した文字列をリスト化する
-print(sys.argv)
+sys.argv
 
 # 現在の日時を取得し、now変数に代入
 now = dt.datetime.now()
 
 # もし"-m"が入力されたらそれをindexとして指定、その後に入れたstringをintegerに変換して変数monthとして定義する
+
+# error修正前
+# month = now.month
+# if "-m" in sys.argv:
+#     idx = sys.argv.index("-m")
+#     # "-m"の次に数字が入っているかを確認し、入っていなかったら現在の月をmonthとして定義する
+#     if idx + 1 < len(sys.argv):
+#         month = int(sys.argv[idx + 1])
+#         if month < 1 or month > 12:
+#             print(f"{month} is neither a month number (1..12) nor a name")
+#     else:
+#         month = now.month
+
+# error修正後
 month = now.month
 if "-m" in sys.argv:
     idx = sys.argv.index("-m")
     # "-m"の次に数字が入っているかを確認し、入っていなかったら現在の月をmonthとして定義する
     if idx + 1 < len(sys.argv):
-        month = int(sys.argv[idx + 1])
-        if month < 1 or month > 12:
-            print(f"{month} is neither a month number (1..12) nor a name")
+        try:
+            month = int(sys.argv[idx + 1])
+            if month < 1 or month > 12:
+                raise ValueError(
+                    f"{month} is neither a month number (1..12) nor a name"
+                )
+        except ValueError as e:
+            print(e)
+            sys.exit(1)
     else:
         month = now.month
-
 
 # 年と月を取得し、フォーマットでビジュアルを中央に整える
 cell = 4
