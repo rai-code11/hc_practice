@@ -2,14 +2,30 @@
 import sys
 
 # datetimeモジュールをインポート
-import datetime
+import datetime as dt
+
+# 入力した文字列をリスト化する
+print(sys.argv)
 
 # 現在の日時を取得し、now変数に代入
-now = datetime.datetime.now()
+now = dt.datetime.now()
+
+# もし"-m"が入力されたらそれをindexとして指定、その後に入れたstringをintegerに変換して変数monthとして定義する
+month = now.month
+if "-m" in sys.argv:
+    idx = sys.argv.index("-m")
+    # "-m"の次に数字が入っているかを確認し、入っていなかったら現在の月をmonthとして定義する
+    if idx + 1 < len(sys.argv):
+        month = int(sys.argv[idx + 1])
+        if month < 1 or month > 12:
+            print(f"{month} is neither a month number (1..12) nor a name")
+    else:
+        month = now.month
+
 
 # 年と月を取得し、フォーマットでビジュアルを中央に整える
 cell = 4
-calender_title = f"{now.month}月 {now.year}"
+calender_title = f"{month}月 {now.year}"
 width = cell * 7
 print(f"{calender_title:^{width}}")
 
@@ -26,10 +42,10 @@ week_width = cell - 1
 
 # print("".join(week_parts))
 
-# 　省略後(リスト内包表記を使用)
+# 　省略後(内包表記を使用)
 print("".join(f"{w:>{week_width}}" for w in weekdays))
 
-# 日付が入ったリストを作る
+# 日付が入ったリストを作る(リスト内包表記を使用)
 days = [d for d in range(1, 32)]
 
 # 該当月の初日を求める
@@ -65,8 +81,8 @@ total_days = days[:last_day]
 # カレンダーのどの曜日から表示するかを求める
 ## ⚪︎曜日(数値判定)の数字分、1日をセットバックする
 ### 該当月の1日とセットバック数を求める
-today = datetime.date.today()
-first = datetime.date(today.year, today.month, 1)
+today = dt.date.today()
+first = dt.date(today.year, month, 1)
 setback = first.weekday()
 
 # 1日を入れる場所を決めるためにsetbackの数値分を月の日付(total_days)の前に追加する
@@ -80,10 +96,8 @@ month_start = (["   "] * setback) + total_days
 month_start_line_break = []
 for key, value in enumerate(month_start, start=1):
     month_start_line_break.append(value)
-    print(f"if前：{month_start_line_break}")
     if key % 7 == 0:
         month_start_line_break.append("\n")
-        print(f"if後：{month_start_line_break}")
 
 # 文字の整形を行う
 ## \nに対して整形を行わないようにする
