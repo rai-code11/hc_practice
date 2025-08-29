@@ -83,9 +83,9 @@ def leap_year(year):
 
 
 #### 該当月の最終日を求める
-if now.month in month_days_31:
+if month in month_days_31:
     last_day = days[30]
-elif now.month in month_days_30:
+elif month in month_days_30:
     last_day = days[29]
 else:
     if leap_year(now.year):
@@ -101,7 +101,7 @@ total_days = days[:last_day]
 ## ⚪︎曜日(数値判定)の数字分、1日をセットバックする
 ### 該当月の1日とセットバック数を求める
 today = dt.date.today()
-first = dt.date(today.year, month, 1)
+first = dt.date(today.year, now.month, 1)
 setback = first.weekday()
 
 # 1日を入れる場所を決めるためにsetbackの数値分を月の日付(total_days)の前に追加する
