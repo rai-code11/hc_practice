@@ -39,8 +39,6 @@ if "-m" in sys.argv:
         except ValueError as e:
             print(e)
             sys.exit(1)
-    else:
-        month = now.month
 
 # 年と月を取得し、フォーマットでビジュアルを中央に整える
 cell = 4
