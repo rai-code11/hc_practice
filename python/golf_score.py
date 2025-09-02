@@ -15,7 +15,7 @@ limit = {"l1": 1, "l2": 3, "l3": 5}
 while True:
     pars = input().split(",")
     strokes = input().split(",")
-    # for文で回して数時間か否かを判断する
+    # for文で回して数字か否かを判断する
     if not all(p.isdigit() for p in pars):
         print("規定打数は数字で入力してください")
         continue
