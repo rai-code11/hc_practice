@@ -43,4 +43,4 @@ class Suica:
 
     # 残高を表示するメソッド
     def show_balance(self):
-        return f"ユーザー{self.user_id}の残高は{self.__balance}円です"
+        return self.__balance
