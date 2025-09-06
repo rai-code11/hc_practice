@@ -1,7 +1,6 @@
-import sys
-from vm import Suica
+from .vending_machine import VM
 
-suica1 = Suicai(1, 2000)
-suica1.charge(50)
-
-print(sys.path)
+vm = VM()
+vm.suica1.charge(20000)
+result = vm.manage_purchase("irohasu", 4)
+print(result)
