@@ -1,43 +1,77 @@
 
 # Entities
 
-[sign_up]
-email
-
 [users]
-user_name
-phone_number
-email
-user
-introdaction
-place
-website
-birthday
-aicon_image
-abatar_image
+*id {label:"bigint, not null, uniq"}
+user_name {label:"VARCHAR(15), not null, uniq"}
+email {"label:"VARCHAR(100), not null}
+phonenumber {label:"VARCHAR(12), not null, uniq}
+name {label:"VARCHAR(50), not null}
+introduction {label:"VARCHAR(160)"}
+place {label:"VARCHAR(30)}
+web_site {label:"VARCHAR(23)}
+birthday {lacel:"VARCHAR(8), not null"}
+profile_img {label:not null}
+avatar_img {label:not null}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
 
-[tweet]
-user_name
-user
-place
-bookmark
+[tweets]
+*id {label:"bigint, not null, uniq"}
+user_id {label:"VARCHAR(15), not null, uniq, FK(users)"}
+tweet_context {label:"VARCHAR(280), not null}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
 
-[good]
-user_name
-user
-notification
+[likes]
+*id {label:"bigint, not null, uniq"}
+user_id {label:"VARCHAR(15), not null, uniq, FK(users)"}
+tweet_id {label:"bigint, not null, uniq, FK(tweets)"}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
 
-[retweet]
-user_name
-user
+[retweets]
+*id {label:"bigint, not null, uniq"}
+user_id {label:"VARCHAR(15), not null, uniq, FK(users)"}
+tweet_id {label:"bigint, not null, uniq, FK(tweets)"}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
 
-[follow]
-user_name
-user
-notification
+[follows]
+*id {label:"bigint, not null, uniq"}
+follower {label:"VARCHAR(15), not null, uniq, FK(users)"}
+followed {label:"bigint, not null, uniq, FK(users)"}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
 
-[direct_message]
-user_name
-user
+[direct_messages]
+*id {label:"bigint, not null, uniq"}
+user_id {label:"bigint, not null, uniq, FK(users)"}
+follow_id {label:"bigint, not null, uniq, FK(follows)"}
+message_context {label:"VARCHAR(10000), not null}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
 
+# フォロー&いいねされたとき通知を受け取る
+[follow_notifications]
+*id {label:"bigint, not null, uniq"}
+user_id {label:"VARCHAR(15), not null, uniq, FK(users)"}
+follow_id {label:"bigint, not null, uniq ,FK(follows)"}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
+
+[likes_notifications]
+*id {label:"bigint, not null, uniq"}
+user_id {label:"VARCHAR(15), not null, uniq, FK(users)"}
+tweet_id {label:"bigint, not null, uniq, FK(tweets)"}
+likes_user_id {label:"bigint, not null, uniq"}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
+
+[bookmarks]
+*id {label:"bigint, not null, uniq"}
+user_id {label:"VARCHAR(15), not null, uniq, FK(users)"}
+tweet_id {label:"bigint, not null, uniq, (tweets)"}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
 
