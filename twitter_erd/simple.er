@@ -1,5 +1,5 @@
 
-# Entities
+entity {bgcolor: "#ececfc", size: "20"}
 
 [users]
 *id {label: "bigint, not null, uniq"}
@@ -47,7 +47,7 @@ updated_at {label: "datetime, not null"}
 [direct_messages]
 *id {label: "bigint, not null, uniq"}
 sender_id {label: "bigint, not null, uniq, FK(users)"}
-recipiet_id {label: "bigint, not null, uniq, FK(users)"}
+recipient_id {label: "bigint, not null, uniq, FK(users)"}
 context {label: "varchar(10000), not null"}
 created_at {label: "datetime, not null"}
 updated_at {label: "datetime, not null"}
@@ -55,14 +55,14 @@ updated_at {label: "datetime, not null"}
 [follow_notifications]
 *id {label: "bigint, not null, uniq"}
 actor_id {label: "bigint, not null, uniq, FK(users)"}
-recipiet_id {label: "bigint, not null, uniq ,FK(users)"}
+recipient_id {label: "bigint, not null, uniq ,FK(users)"}
 created_at {label: "datetime, not null"}
 updated_at {label: "datetime, not null"}
 
 [likes_notifications]
 *id {label: "bigint, not null, uniq"}
 actor_id {label: "bigint, not null, uniq, FK(users)"}
-recipiet_id {label: "bigint, not null, uniq ,FK(users)"}
+recipient_id {label: "bigint, not null, uniq ,FK(users)"}
 tweet_id {label: "bigint, not null, uniq, FK(tweets)"}
 created_at {label: "datetime, not null"}
 updated_at {label: "datetime, not null"}
@@ -74,3 +74,16 @@ tweet_id {label: "bigint, not null, uniq, FK(tweets)"}
 created_at {label: "datetime, not null"}
 updated_at {label: "datetime, not null"}
 
+users 1--* tweets
+users 1--* likes
+users 1--* retweets
+users 1--* follows
+users 1--* direct_messages
+users 1--* follow_notifications
+users 1--* likes_notifications
+users 1--* bookmarks
+
+tweets 1--* likes
+tweets 1--* retweets
+tweets 1--* likes_notifications
+tweets 1--* bookmarks
