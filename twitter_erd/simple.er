@@ -1,0 +1,89 @@
+
+entity {bgcolor: "#ececfc", size: "20"}
+
+[users]
+*id {label: "bigint, not null, uniq"}
+user_name {label: "varchar(15), not null, uniq"}
+email {label: "varchar(100), not null"}
+phonenumber {label: "varchar(12), not null, uniq"}
+name {label: "varchar(50), not null"}
+introduction {label: "varchar(160)"}
+place {label: "varchar(30)"}
+web_site {label: "varchar(160)"}
+birthday {label: "varchar(8), not null"}
+profile_img {label: "varchar(300), not null"}
+avatar_img {label: "varchar(300), not null"}
+created_at {label: "datetime, not null"}
+updated_at {label: "datetime, not null"}
+
+[tweets]
+*id {label:"bigint, not null, uniq"}
+user_id {label: "bigint, not null, uniq, FK(users)"}
+context {label: "varchar(280), not null"}
+created_at {label: "datetime, not null"}
+updated_at {label: "datetime, not null"}
+
+[likes]
+*id {label:"bigint, not null, uniq"}
+user_id {label:"bigint, not null, uniq, FK(users)"}
+tweet_id {label:"bigint, not null, uniq, FK(tweets)"}
+created_at {label:"datetime, not null"}
+updated_at {label:"datetime, not null"}
+
+[retweets]
+*id {label: "bigint, not null, uniq"}
+user_id {label: "bigint, not null, uniq, FK(users)"}
+tweet_id {label: "bigint, not null, uniq, FK(tweets)"}
+created_at {label: "datetime, not null"}
+updated_at {label: "datetime, not null"}
+
+[follows]
+*id {label: "bigint, not null, uniq"}
+follower {label: "bigint, not null, uniq, FK(users)"}
+followed {label: "bigint, not null, uniq, FK(users)"}
+created_at {label: "datetime, not null"}
+updated_at {label: "datetime, not null"}
+
+[direct_messages]
+*id {label: "bigint, not null, uniq"}
+sender_id {label: "bigint, not null, uniq, FK(users)"}
+recipient_id {label: "bigint, not null, uniq, FK(users)"}
+context {label: "varchar(10000), not null"}
+created_at {label: "datetime, not null"}
+updated_at {label: "datetime, not null"}
+
+[follow_notifications]
+*id {label: "bigint, not null, uniq"}
+actor_id {label: "bigint, not null, uniq, FK(users)"}
+recipient_id {label: "bigint, not null, uniq ,FK(users)"}
+created_at {label: "datetime, not null"}
+updated_at {label: "datetime, not null"}
+
+[likes_notifications]
+*id {label: "bigint, not null, uniq"}
+actor_id {label: "bigint, not null, uniq, FK(users)"}
+recipient_id {label: "bigint, not null, uniq ,FK(users)"}
+tweet_id {label: "bigint, not null, uniq, FK(tweets)"}
+created_at {label: "datetime, not null"}
+updated_at {label: "datetime, not null"}
+
+[bookmarks]
+*id {label: "bigint, not null, uniq"}
+actor_id {label: "bigint, not null, uniq, FK(users)"}
+tweet_id {label: "bigint, not null, uniq, FK(tweets)"}
+created_at {label: "datetime, not null"}
+updated_at {label: "datetime, not null"}
+
+users 1--* tweets
+users 1--* likes
+users 1--* retweets
+users 1--* follows
+users 1--* direct_messages
+users 1--* follow_notifications
+users 1--* likes_notifications
+users 1--* bookmarks
+
+tweets 1--* likes
+tweets 1--* retweets
+tweets 1--* likes_notifications
+tweets 1--* bookmarks
