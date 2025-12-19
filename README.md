@@ -123,6 +123,3 @@ docker run -i ghcr.io/burntsushi/erd:latest < sample.er >| out.pdf
 ```
 
 * [https://github.com/BurntSushi/erd](https://github.com/BurntSushi/erd)
-
-```
-
